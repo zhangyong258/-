@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
 
-    <p>前端工程师</p>
+    <p>前端工程师-Mr_zhang</p>
     <h3>Front-end Engineer</h3>
   </div>
 </template>
