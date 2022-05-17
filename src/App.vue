@@ -18,7 +18,7 @@
       clickMode="push"
     >
     </vue-particles>
-    <router-view class="float-page page-client"/>
+    <router-view class="float-page"/>
   </div>
 </template>
 

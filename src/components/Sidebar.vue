@@ -1,10 +1,10 @@
 <template>
-  <div>文章页面</div>
+  <div>sidebar</div>
 </template>
 
 <script>
   export default {
-    name: "index"
+    name: "Sidebar"
   }
 </script>
 
