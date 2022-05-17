@@ -18,6 +18,7 @@
       clickMode="push"
     >
     </vue-particles>
+    <router-view class="float-page page-client"/>
   </div>
 </template>
 
@@ -28,11 +29,18 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less" scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   background: #2c3e50;
+  position: relative;
+  z-index: 999;
+  .float-page{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 998;
+  }
 }
 </style>
