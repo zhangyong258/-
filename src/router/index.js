@@ -10,9 +10,9 @@ const routes = [
     redirect: '/home',
   },
   {
-    path:'/',
+    path: '/',
     component: BaseLayout,
-    children:[
+    children: [
       {
         path: '/home',
         name: 'Home',

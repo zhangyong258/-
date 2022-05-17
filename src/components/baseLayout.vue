@@ -14,7 +14,7 @@
 
   export default {
     name: 'baseLayout',
-    components: {GlobalHeader,Sidebar}
+    components: {GlobalHeader, Sidebar}
   }
 </script>
 
@@ -29,18 +29,15 @@
       overflow-x: hidden;
       overflow-y: auto;
       margin-top: 10px;
-      color: #fff;
-      border: 1px solid #fff;
+      background: rgba(255,255,255,0.8);
     }
 
-    .sidebar-box{
+    .sidebar-box {
       position: fixed;
       top: 70px;
       bottom: 0;
       left: 100px;
       width: 250px;
-      color: #fff;
-      border: 1px solid #fff;
     }
   }
 </style>
