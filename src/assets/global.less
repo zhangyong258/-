@@ -60,6 +60,30 @@ a:focus {
 }
 
 .page-client {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 1200px;
+}
+
+.btn-border{
+  position: relative;
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border: 2px solid #409EFF;
+    transition: all .5s;
+    border-radius: var(--bRadius);
+    animation: clippath 3s infinite linear;
+  }
+  &::after {
+    animation: clippath 3s infinite -1.5s linear;
+  }
+  @keyframes clippath {
+    0%, 100% { clip-path: inset(0 0 98% 0); }
+    25% { clip-path: inset(0 98% 0 0); }
+    50% { clip-path: inset(98% 0 0 0); }
+    75% { clip-path: inset(0 0 0 98%); }
+  }
 }

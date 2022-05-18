@@ -1,10 +1,12 @@
 <template>
   <div class="base-layout">
-    <GlobalHeader></GlobalHeader>
-    <div class="page-view page-client">
-      <router-view/>
+    <GlobalHeader :windowSize="windowSize"></GlobalHeader>
+    <div class="page-view">
+      <Sidebar v-show="windowSize > 1460" class="sidebar-box"></Sidebar>
+      <div class="view-content">
+        <router-view/>
+      </div>
     </div>
-    <Sidebar class="sidebar-box"></Sidebar>
   </div>
 </template>
 
@@ -14,7 +16,18 @@
 
   export default {
     name: 'baseLayout',
-    components: {GlobalHeader, Sidebar}
+    components: {GlobalHeader, Sidebar},
+    data(){
+      return{
+        windowSize: null
+      }
+    },
+    mounted() {
+      this.windowSize = window.innerWidth
+      window.onresize = ()=>{
+        this.windowSize = window.innerWidth
+      }
+    }
   }
 </script>
 
@@ -24,20 +37,22 @@
     flex-direction: column;
 
     .page-view {
-      width: 100%;
       flex: 1;
+      display: flex;
+      justify-content: center;
       overflow-x: hidden;
       overflow-y: auto;
       margin-top: 10px;
-      background: rgba(255,255,255,0.8);
-    }
-
-    .sidebar-box {
-      position: fixed;
-      top: 70px;
-      bottom: 0;
-      left: 100px;
-      width: 250px;
+      .sidebar-box {
+        width: 250px;
+        height: 100%;
+        margin-right: 10px;
+      }
+      .view-content{
+        width: 1200px;
+        height: 100%;
+        background: rgba(255,255,255,0.8);
+      }
     }
   }
 </style>

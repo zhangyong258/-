@@ -17,6 +17,11 @@
 <script>
   export default {
     name: 'HelloWorld',
+    props:{
+      windowSize:{
+        type:Number
+      }
+    },
     mounted() {
       console.log(this.$route)
     },
@@ -38,7 +43,6 @@
     background: #333;
 
     .user-info {
-      flex: 1;
       padding: 0 10px;
 
       span {
@@ -85,7 +89,6 @@
     }
 
     .page-menu {
-      flex: 1;
       padding: 0 10px;
       display: flex;
       justify-content: flex-end;
