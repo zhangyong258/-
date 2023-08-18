@@ -16,17 +16,26 @@ const routes = [
       {
         path: '/home',
         name: 'Home',
-        component: () => import('@/views/home/index.vue')
+        component: () => import('@/views/home/index.vue'),
+        meta:{
+          title: '首页'
+        }
       },
       {
         path: '/article',
         name: 'Article',
-        component: () => import('@/views/article/index.vue')
+        component: () => import('@/views/article/index.vue'),
+        meta:{
+          title: '文章'
+        }
       },
       {
         path: '/resume',
         name: 'Resume',
-        component: () => import('@/views/resume/index.vue')
+        component: () => import('@/views/resume/index.vue'),
+        meta:{
+          title: '简历'
+        }
       }
     ]
   },

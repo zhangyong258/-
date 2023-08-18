@@ -5,10 +5,10 @@
       <div class="login-form">
         <el-form :model="loginForm" label-width="60px">
           <el-form-item label="用户名">
-            <el-input v-model="loginForm.userName" autocomplete="off"></el-input>
+            <el-input v-model="loginForm.account" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input type="password" v-model="loginForm.password" autocomplete="off"></el-input>
+            <el-input type="password" v-model="loginForm.secret" autocomplete="off"></el-input>
           </el-form-item>
         </el-form>
         <div class="login-btn">
@@ -25,17 +25,19 @@
     name: "login",
     data() {
       return {
-        loginForm:{
-          userName: '',
-          password: ''
-        }
+        loginForm:{}
       }
     },
     methods:{
       submitForm(){
-        UserApi.loginReq(this.loginForm)
+        let params = {
+          ...this.loginForm,
+          type: 101
+        }
+        UserApi.loginReq(params)
           .then(res=>{
-            console.log('login response:',res)
+            localStorage.setItem('TOKEN',res.token)
+            this.$router.push('/home')
           })
       }
     }

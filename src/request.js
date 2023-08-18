@@ -4,7 +4,7 @@ import axios from 'axios'
 // import { rewriteMessage } from '@/utils/message'
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'http://localhost:3000/v1',
   timeout: 30000,
   headers: {
     // 'Accept': 'application/json, text/javascript, */*; q=0.01',
