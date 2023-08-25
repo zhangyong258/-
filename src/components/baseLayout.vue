@@ -1,58 +1,38 @@
 <template>
   <div class="base-layout">
-    <GlobalHeader :windowSize="windowSize"></GlobalHeader>
-    <div class="page-view">
-      <Sidebar v-show="windowSize > 1460" class="sidebar-box"></Sidebar>
-      <div class="view-content">
-        <router-view/>
-      </div>
+    <GlobalHeader />
+    <div class="page-view wrap">
+      <Sidebar />
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-  import GlobalHeader from "./GlobalHeader";
-  import Sidebar from "./Sidebar";
+import GlobalHeader from './GlobalHeader';
+import Sidebar from './Sidebar.vue';
 
-  export default {
-    name: 'baseLayout',
-    components: {GlobalHeader, Sidebar},
-    data(){
-      return{
-        windowSize: null
-      }
-    },
-    mounted() {
-      this.windowSize = window.innerWidth
-      window.onresize = ()=>{
-        this.windowSize = window.innerWidth
-      }
-    }
-  }
+export default {
+  name: 'baseLayout',
+  components: { GlobalHeader, Sidebar },
+  data() {
+    return {};
+  },
+  mounted() {},
+};
 </script>
 
 <style scoped lang="less">
-  .base-layout {
-    display: flex;
-    flex-direction: column;
+.base-layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
-    .page-view {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      overflow-x: hidden;
-      overflow-y: auto;
-      margin-top: 10px;
-      .sidebar-box {
-        width: 250px;
-        height: 100%;
-        margin-right: 10px;
-      }
-      .view-content{
-        width: 1200px;
-        height: 100%;
-        background: rgba(255,255,255,0.8);
-      }
-    }
+  .page-view {
+    flex: 1;
+    border: 1px solid @yellow;
+    position: relative;
   }
+}
 </style>
