@@ -1,9 +1,9 @@
 <template>
-  <div class="base-layout">
+  <div class="base-layout scroll-container">
     <GlobalHeader />
     <div class="page-view wrap">
       <Sidebar />
-      <router-view />
+      <router-view class="page-container" />
     </div>
   </div>
 </template>
@@ -26,13 +26,18 @@ export default {
 .base-layout {
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-
+  overflow-y: auto;
   .page-view {
-    flex: 1;
-    border: 1px solid @yellow;
+    height: 100%;
     position: relative;
+    z-index: 10;
+  }
+
+  .page-container {
+    position: absolute;
+    width: calc(100% - 170px);
+    top: 75px;
+    right: 0;
   }
 }
 </style>

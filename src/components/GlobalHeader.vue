@@ -30,9 +30,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
 .global-header {
+  position: fixed;
+  z-index: 20;
   width: 100%;
   height: 60px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
   .header-container {
     height: 60px;
     overflow: hidden;
