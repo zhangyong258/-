@@ -4,7 +4,7 @@
       v-for="item in siderMenu"
       :key="item.id"
       :class="['menu-item', { active: current === item.id }]"
-      @click="current = item.id"
+      @click="handleSiderMenu(item)"
     >
       <svg-icon :iconClass="item.icon" />
       <span>{{ item.label }}</span>
@@ -14,6 +14,8 @@
 
 <script>
 import SvgIcon from './SvgIcon.vue';
+import { mapState, mapActions } from 'pinia';
+import { configStore } from '@/store/config';
 export default {
   components: { SvgIcon },
   name: 'Sidebar',
@@ -22,47 +24,70 @@ export default {
       siderMenu: [
         {
           id: 1,
-          label: '登高欲穷', // 千里目
+          label: '登高欲穷',
+          label_1: '千里目',
           icon: 'Fire',
         },
         {
           id: 2,
-          label: '愁云低锁', // 衡阳路
+          label: '愁云低锁',
+          label_1: '衡阳路',
           icon: 'heart-fill',
         },
         {
           id: 3,
-          label: '鱼书不至', // 雁无凭
+          label: '鱼书不至',
+          label_1: '雁无凭',
           icon: 'common',
         },
         {
           id: 4,
-          label: '几番空作', // 悲秋赋
+          label: '几番空作',
+          label_1: '悲秋赋',
           icon: 'code-block',
         },
         {
           id: 5,
-          label: '回首西山', // 月又斜
+          label: '回首西山',
+          label_1: '月又斜',
           icon: 'code',
         },
         {
           id: 6,
-          label: '天涯孤客', // 真难渡
+          label: '天涯孤客',
+          label_1: '真难渡',
           icon: 'star-fill',
         },
         {
           id: 7,
-          label: '丈夫有泪', // 不轻弹
+          label: '丈夫有泪',
+          label_1: '不轻弹',
           icon: 'bug',
         },
         {
           id: 8,
-          label: '只因未到', // 伤心处
+          label: '只因未到',
+          label_1: '伤心处',
           icon: 'robot',
         },
       ],
       current: 1,
     };
+  },
+  computed: {
+    ...mapState(configStore, ['headerText']),
+  },
+  mounted() {
+    this.current = this.siderMenu.filter(
+      (item) => item.label_1 === this.headerText
+    )[0].id;
+  },
+  methods: {
+    ...mapActions(configStore, ['changeText']),
+    handleSiderMenu(item) {
+      this.current = item.id;
+      this.changeText(item.label_1);
+    },
   },
 };
 </script>
