@@ -5,18 +5,20 @@
         <svg-icon iconClass="code"></svg-icon>
         {{ headerText }}
       </div>
-      <swiper class="swiper-container" :options="swiperOption" ref="mySwiper">
-        <swiper-slide
-          class="swiper_slide_item"
-          v-for="(item, index) in bgArr"
-          :key="index"
-        >
-          <img :src="item.src" alt="" />
-        </swiper-slide>
-        <div class="swiper-pagination" slot="pagination"></div>
-      </swiper>
+      <mySwiper :swiperOption="swiperOption" :swiperSlides="bgArr" />
+      <div class="articleList" v-for="item in articleList" :key="item.id">
+        <ArticleItem
+          :imgSrc="item.src"
+          :title="item.title"
+          :description="item.description"
+          :staticObj="item.views"
+        />
+      </div>
     </div>
     <div class="common-utils">
+      <SearchModule />
+      <StatisticVue />
+      <HotArticle />
       <calendar
         showPrepNext
         :checkedDate="checkedDate"
@@ -29,15 +31,26 @@
 
 <script>
 import calendar from 'components/Calendar.vue';
+import mySwiper from 'components/mySwiper.vue';
 import moment from 'moment';
 import { mapState } from 'pinia';
 import { configStore } from '@/store/config';
+import ArticleItem from './components/ArticleItem.vue';
+import SearchModule from './components/SearchModule.vue';
+import StatisticVue from './components/Statistic.vue';
+import HotArticle from './components/HotArticle.vue';
 export default {
   name: 'index',
-  components: { calendar },
+  components: {
+    calendar,
+    mySwiper,
+    ArticleItem,
+    SearchModule,
+    StatisticVue,
+    HotArticle,
+  },
   data() {
     return {
-      swiper1: null,
       checkedDate: moment(new Date()).format('L'),
       swiperOption: {
         pagination: {
@@ -59,22 +72,74 @@ export default {
         { src: require('../../assets/images/think-deeply.jpg') },
         { src: require('../../assets/images/wat-umong.jpg') },
       ],
+      articleList: [
+        {
+          id: 1,
+          src: 'https://cdn.surmon.cn/imgproxy/resize:fill:350:238:0/plain/thumbnail/Nihilism.jpg@avif',
+          title: '存在主义也许不是解药',
+          description: '人人生而失败，众生皆苦。',
+          views: {
+            clock: '一周前',
+            eye: 20,
+            review: 5,
+            upvote: 100,
+          },
+        },
+        {
+          id: 2,
+          src: 'https://cdn.surmon.cn/imgproxy/resize:fill:350:238:0/plain/thumbnail/Nihilism.jpg@avif',
+          title: '存在主义也许不是解药',
+          description: '人人生而失败，众生皆苦。',
+          views: {
+            clock: '4天前',
+            eye: 20,
+            review: 5,
+            upvote: 100,
+          },
+        },
+        {
+          id: 3,
+          src: 'https://cdn.surmon.cn/imgproxy/resize:fill:350:238:0/plain/thumbnail/Nihilism.jpg@avif',
+          title: '存在主义也许不是解药',
+          description: '人人生而失败，众生皆苦。',
+          views: {
+            clock: '2天前',
+            eye: 20,
+            review: 5,
+            upvote: 100,
+          },
+        },
+        {
+          id: 4,
+          src: 'https://cdn.surmon.cn/imgproxy/resize:fill:350:238:0/plain/thumbnail/Nihilism.jpg@avif',
+          title: '存在主义也许不是解药',
+          description: '人人生而失败，众生皆苦。',
+          views: {
+            clock: '1天前',
+            eye: 20,
+            review: 5,
+            upvote: 100,
+          },
+        },
+        {
+          id: 5,
+          src: 'https://cdn.surmon.cn/imgproxy/resize:fill:350:238:0/plain/thumbnail/Nihilism.jpg@avif',
+          title: '存在主义也许不是解药',
+          description: '人人生而失败，众生皆苦。',
+          views: {
+            clock: '12h',
+            eye: 20,
+            review: 5,
+            upvote: 100,
+          },
+        },
+      ],
     };
   },
   computed: {
     ...mapState(configStore, ['headerText']),
-    swiper() {
-      return this.$refs.mySwiper.$swiper;
-    },
   },
-  mounted() {
-    this.swiper.el.onmouseover = () => {
-      this.swiper.autoplay.stop();
-    };
-    this.swiper.el.onmouseleave = () => {
-      this.swiper.autoplay.start();
-    };
-  },
+
   methods: {
     // 点击日期
     clickDate(date) {
@@ -105,29 +170,6 @@ export default {
       line-height: 40px;
       padding-left: 20px;
       margin-bottom: 10px;
-    }
-    .swiper-container {
-      width: 100%;
-      height: 246px;
-      border-radius: 6px;
-      overflow: hidden;
-      .swiper_slide_item {
-        width: 100%;
-        img {
-          width: 100%;
-          height: 100%;
-          transition: all 0.6s;
-        }
-        &:hover {
-          cursor: pointer;
-          img {
-            transform: scale(1.1);
-          }
-        }
-      }
-      /deep/ .swiper-pagination-bullet-active-main {
-        background-color: #fff;
-      }
     }
   }
   .common-utils {
